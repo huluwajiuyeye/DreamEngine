@@ -1,0 +1,10 @@
+^C:\USERS\STARYZHOU\RIDERPROJECTS\DREAMENGINE\LIB\GLFW-3.3.8\BUILD\CMAKEFILES\55EBDD8C5D1DD8FDBC72BFA5374F9A59\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/staryzhou/RiderProjects/DreamEngine/Lib/glfw-3.3.8 -BC:/Users/staryzhou/RiderProjects/DreamEngine/Lib/glfw-3.3.8/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/staryzhou/RiderProjects/DreamEngine/Lib/glfw-3.3.8/build/GLFW.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

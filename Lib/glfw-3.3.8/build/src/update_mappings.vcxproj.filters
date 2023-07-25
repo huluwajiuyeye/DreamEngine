@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\staryzhou\RiderProjects\DreamEngine\Lib\glfw-3.3.8\build\CMakeFiles\ac213f8c7f1527f316a1bc7f6c7b8af1\update_mappings.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\staryzhou\RiderProjects\DreamEngine\Lib\glfw-3.3.8\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\staryzhou\RiderProjects\DreamEngine\Lib\glfw-3.3.8\src\mappings.h.in">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="C:\Users\staryzhou\RiderProjects\DreamEngine\Lib\glfw-3.3.8\CMake\GenerateMappings.cmake" />
+    <None Include="C:\Users\staryzhou\RiderProjects\DreamEngine\Lib\glfw-3.3.8\build\src\CMakeFiles\update_mappings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{0F60C552-832F-363A-B227-CE42B12A8F6A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{9E8760D4-E86E-36BF-8433-79D468F7799C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
