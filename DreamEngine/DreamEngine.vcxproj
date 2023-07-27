@@ -80,8 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Users\staryzhou\RiderProjects\DreamEngine\DreamEngine\libirary;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\staryzhou\RiderProjects\DreamEngine\DreamEngine\includes;$(IncludePath)</IncludePath>
+    <LibraryPath>.\libirary;$(LibraryPath)</LibraryPath>
+    <IncludePath>.\includes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
