@@ -1,50 +1,46 @@
 
 #include <iostream>
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "Core/Object.h"
+#include "Game/GameMain.h"
+#include "Rendering/RenderCore/RenderMain.h"
 
-
-void processInput(GLFWwindow *window)
+// 获取用户数据
+void GetUserInput()
 {
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
+    
 }
 
+// 是否退出游戏
+bool Exit()
+{
+    return false;
+}
 
 int main(int argc, char* argv[])
 {
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-
-    GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
-    if (window == NULL)
+    GameMain* _GameMain = new GameMain();
+    RenderMain* _RenderMain = new RenderMain();
+    
+    while (true)
     {
-        std::cout << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        return -1;
-    }
-    glfwMakeContextCurrent(window);
+        // 获取用户输入
+        GetUserInput();
 
+        // 是否退出游戏
+        if(Exit())
+        {
+            break;
+        }
 
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        std::cout << "Failed to initialize GLAD" << std::endl;
-        return -1;
-    }
-    glViewport(0, 0, 800, 600);
+        // 游戏主循环
+        _GameMain->Tick();
 
-    while(!glfwWindowShouldClose(window))
-    {
-        processInput(window);
+        // 渲染主循环
+        _RenderMain->Tick();
         
-        glfwSwapBuffers(window);
-        glfwPollEvents();    
     }
-    glfwTerminate();
+    
     return 0;
 }

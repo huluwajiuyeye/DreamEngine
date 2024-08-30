@@ -159,8 +159,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Object.cpp" />
     <ClCompile Include="DreamEngine.cpp" />
+    <ClCompile Include="Game\GameMain.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Rendering\OpenGL\RenderOpenGL.cpp" />
+    <ClCompile Include="Rendering\RenderCore\RenderBase.cpp" />
+    <ClCompile Include="Rendering\RenderCore\RenderMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Rendering\Render.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Object.h" />
+    <ClInclude Include="Game\GameMain.h" />
+    <ClInclude Include="Rendering\OpenGL\RenderOpenGL.h" />
+    <ClInclude Include="Rendering\RenderCore\RenderBase.h" />
+    <ClInclude Include="Rendering\RenderCore\RenderMain.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
