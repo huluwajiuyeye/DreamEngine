@@ -6,6 +6,11 @@
 void RenderMain::Tick()
 {
     Object::Tick();
+
+    if(Render)
+    {
+        Render->Draw();
+    }
 }
 
 void RenderMain::Init()

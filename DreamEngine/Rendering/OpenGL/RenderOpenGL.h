@@ -4,10 +4,16 @@
 #include <GLFW/glfw3.h>
 
 
-class RenderOpenGL :RenderBase
+class RenderOpenGL :public RenderBase
 {
 public:
     virtual void Draw() override;
 
     virtual void Init() override;
+
+    GLFWwindow* Window;
+    
+    void End() override;
+
+    void ProcessInput(GLFWwindow *window);
 };

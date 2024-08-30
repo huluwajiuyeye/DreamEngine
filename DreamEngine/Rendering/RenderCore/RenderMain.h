@@ -8,6 +8,6 @@ public:
     virtual void Tick() override;
 
     void Init();
-
+    
     RenderBase* Render;
 };

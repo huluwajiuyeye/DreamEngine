@@ -5,6 +5,18 @@
 #include "Game/GameMain.h"
 #include "Rendering/RenderCore/RenderMain.h"
 
+GameMain* _GameMain;
+RenderMain* _RenderMain;
+
+void InitGame()
+{
+     _GameMain = new GameMain();
+     _RenderMain = new RenderMain();
+    
+    _GameMain->Init();
+    _RenderMain->Init();
+}
+
 // 获取用户数据
 void GetUserInput()
 {
@@ -19,12 +31,8 @@ bool Exit()
 
 int main(int argc, char* argv[])
 {
-
-    GameMain* _GameMain = new GameMain();
-    RenderMain* _RenderMain = new RenderMain();
     
-    _GameMain->Init();
-    _RenderMain->Init();
+    InitGame();
     
     while (true)
     {
