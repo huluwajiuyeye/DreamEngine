@@ -6,3 +6,7 @@ void GameMain::Tick()
 
     
 }
+
+void GameMain::Init()
+{
+}

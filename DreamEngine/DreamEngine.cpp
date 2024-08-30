@@ -23,6 +23,9 @@ int main(int argc, char* argv[])
     GameMain* _GameMain = new GameMain();
     RenderMain* _RenderMain = new RenderMain();
     
+    _GameMain->Init();
+    _RenderMain->Init();
+    
     while (true)
     {
         // 获取用户输入

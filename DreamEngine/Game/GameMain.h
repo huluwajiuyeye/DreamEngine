@@ -7,4 +7,6 @@ class GameMain:Object
 {
 public:
     virtual void Tick() override;
+
+    void Init();
 };
