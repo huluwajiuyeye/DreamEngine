@@ -16,4 +16,6 @@ public:
     void End() override;
 
     void ProcessInput(GLFWwindow *window);
+
+    void InitDrawBuffer();
 };
