@@ -48,12 +48,14 @@ void RenderOpenGL::Draw()
     if(Window)
     {
         glClear(GL_COLOR_BUFFER_BIT);
-        
-        // 没有索引缓冲区时，使用这个指令
-        glDrawArrays(GL_TRIANGLES,0,3);
+
+        // glDrawArrays(GL_TRIANGLES,0,3);
+        //
+        // // 没有索引缓冲区时，使用这个指令
+        // glDrawArrays(GL_TRIANGLES,3,3);
 
         // // 有索引缓冲区的时候，使用这个DrawCall指令
-        // glDrawElements();
+        glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT, 0);
 
         
         glfwSwapBuffers(Window);
@@ -63,16 +65,36 @@ void RenderOpenGL::Draw()
 
 void RenderOpenGL::InitDrawBuffer()
 {
-    float Positions[6] = {
-        0.5f,-0.5f,
-        0.0f, 0.5f,
-       -0.5f,-0.5f
+
+    // 顶点缓冲区
+    float Positions[] = {
+        -0.5f,0.5f,0.f,
+        0.5f, -0.5f,0.f,
+       -0.5f,-0.5f,0.f,
+        0.5f,  0.5f,0.f,
+
    };
 
+    // 索引缓冲区
+    unsigned int indices[] = {
+        0,1,2,
+        1,2,3,
+    };
+    
     unsigned int VAO;
     glGenVertexArrays(1,&VAO);
     glBindVertexArray(VAO);
 
+    // 创建顶点索引buffer
+    unsigned int EBO;
+    glGenBuffers(1, &EBO);
+    
+    // 将Buffer绑定到 GL_ELEMENT_ARRAY_BUFFER （索引缓冲区上）
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
+    // 设置索引缓冲区的值
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW); 
+    
     // 创建OpenGL Buffer  VertexBuffer
     unsigned int VertexBufferID;  //当前Buffer的ID
     glGenBuffers(1,&VertexBufferID);
@@ -81,30 +103,33 @@ void RenderOpenGL::InitDrawBuffer()
     glBindBuffer(GL_ARRAY_BUFFER,VertexBufferID);
 
     // 穿数据到Buffer
-    glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float),Positions,GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Positions),Positions,GL_STATIC_DRAW);
 
     
-    // 定义顶点, 2代表有两个顶点
-    glVertexAttribPointer(0,2,GL_FLOAT,GL_FALSE,sizeof(float) * 2,0);
+    // 定义顶点, 2代表顶点是二维的
+    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(float) * 3,0);
     glEnableVertexAttribArray(0);
 
     std::string VertexShaderCode =
         "#version 460 core\n"
         "\n"
-        "layout(location = 0) in vec4 position;"
-        "\n"
+        "layout(location = 0) \n"
+        "in vec3 position; \n"
+        "out vec4 vertexColor; \n"
         "void main()\n"
         "{\n"
-        "   gl_Position = position;\n"
+        "   gl_Position = vec4(position, 1.0);\n"
+        "   vertexColor = vec4(1,1,0,1);    \n"
         "}\n";
     std::string FramgemtShaderCode =
         "#version 460 core\n"
         "\n"
-        "layout(location = 0) out vec4 color;"
+        "layout(location = 0) out vec4 color; "
+        "uniform vec4 ourColor\n"
         "\n"
         "void main()\n"
         "{\n"
-        "   color = vec4(1.0, 0.0, 0.0, 1.0);\n"
+        "   color = ourColor;\n"
         "}\n";
     
     unsigned int shader =  CreateShader(VertexShaderCode,FramgemtShaderCode);
