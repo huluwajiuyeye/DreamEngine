@@ -2,62 +2,23 @@
 
 #include <iostream>
 
-static int CompileShader(unsigned int type, const std::string &source)
-{
-    unsigned int id = glCreateShader(type);
-    const char* src = source.c_str();
-    glShaderSource(id, 1, &src, nullptr);
-    glCompileShader(id);
+#include "Shader.h"
 
-    // 错误检查
-    int result;
-    glGetShaderiv(id, GL_COMPILE_STATUS, &result);
-    if(result == GL_FALSE)
-    {
-        int Length;
-        glGetShaderiv(id,GL_INFO_LOG_LENGTH, &Length);
-        char* message = (char*)alloca(Length * sizeof(char));
-        glGetShaderInfoLog(id,Length,&Length,message);
-        std::cout<<"Failed to compile shander code:"<<message;
-        glDeleteShader(id);
-        return 0;
-    }
-
-    return id;
-}
-
-static unsigned int CreateShader(const std::string& VertexShader, const std::string& FragementShader)
-{
-    unsigned int program = glCreateProgram();
-    unsigned int vs = CompileShader(GL_VERTEX_SHADER, VertexShader);
-    unsigned int fs = CompileShader(GL_FRAGMENT_SHADER,FragementShader);
-
-    glAttachShader(program, vs);
-    glAttachShader(program, fs);
-    glLinkProgram(program);
-    glValidateProgram(program);
-
-    glDeleteShader(vs);
-    glDeleteShader(fs);
-    return program;
-    
-}
+unsigned int GProgram;
 
 void RenderOpenGL::Draw()
 {
     if(Window)
     {
         glClear(GL_COLOR_BUFFER_BIT);
-
-        // glDrawArrays(GL_TRIANGLES,0,3);
-        //
-        // // 没有索引缓冲区时，使用这个指令
-        // glDrawArrays(GL_TRIANGLES,3,3);
+        if(CurShader)
+        {
+            CurShader->Use();
+            //CurShader->SetFloat("blueColor",0.5f);
+        }
 
         // // 有索引缓冲区的时候，使用这个DrawCall指令
         glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT, 0);
-
-        
         glfwSwapBuffers(Window);
         glfwPollEvents();     
     }
@@ -68,11 +29,10 @@ void RenderOpenGL::InitDrawBuffer()
 
     // 顶点缓冲区
     float Positions[] = {
-        -0.5f,0.5f,0.f,
-        0.5f, -0.5f,0.f,
-       -0.5f,-0.5f,0.f,
-        0.5f,  0.5f,0.f,
-
+        -0.5f,0.5f,0.f,     1.f,0.f,0.f,
+        0.5f, -0.5f,0.f,    0.f,1.f,0.f,
+       -0.5f,-0.5f,0.f,     0.f,0.f,1.f,
+        0.5f,  0.5f,0.f,    1.f,1.f,0.f,
    };
 
     // 索引缓冲区
@@ -107,34 +67,14 @@ void RenderOpenGL::InitDrawBuffer()
 
     
     // 定义顶点, 2代表顶点是二维的
-    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(float) * 3,0);
+    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,sizeof(float) * 6,0);
     glEnableVertexAttribArray(0);
 
-    std::string VertexShaderCode =
-        "#version 460 core\n"
-        "\n"
-        "layout(location = 0) \n"
-        "in vec3 position; \n"
-        "out vec4 vertexColor; \n"
-        "void main()\n"
-        "{\n"
-        "   gl_Position = vec4(position, 1.0);\n"
-        "   vertexColor = vec4(1,1,0,1);    \n"
-        "}\n";
-    std::string FramgemtShaderCode =
-        "#version 460 core\n"
-        "\n"
-        "layout(location = 0) out vec4 color; "
-        "uniform vec4 ourColor\n"
-        "\n"
-        "void main()\n"
-        "{\n"
-        "   color = ourColor;\n"
-        "}\n";
+    // 定义顶点颜色
+    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,sizeof(float) * 6,(void*) (3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
     
-    unsigned int shader =  CreateShader(VertexShaderCode,FramgemtShaderCode);
-    glUseProgram(shader);
-    
+    CurShader = new Shader("/Rendering/OpenGL/ShaderCode/shader_1.vs","/Rendering/OpenGL/ShaderCode/shader_1.fs");
 }
 
 

@@ -159,24 +159,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\FileSystem\FileUtil.cpp" />
     <ClCompile Include="Core\Object.cpp" />
     <ClCompile Include="DreamEngine.cpp" />
     <ClCompile Include="Game\GameMain.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Rendering\OpenGL\RenderOpenGL.cpp" />
+    <ClCompile Include="Rendering\OpenGL\Shader.cpp" />
+    <ClCompile Include="Rendering\OpenGL\Util\ShaderUtil.cpp" />
     <ClCompile Include="Rendering\RenderCore\RenderBase.cpp" />
     <ClCompile Include="Rendering\RenderCore\RenderMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Rendering\OpenGL\Readme.md" />
+    <Content Include="Rendering\OpenGL\ShaderCode\shader_1.vs" />
     <Content Include="Rendering\Render.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\FileSystem\FileUtil.h" />
     <ClInclude Include="Core\Object.h" />
     <ClInclude Include="Game\GameMain.h" />
     <ClInclude Include="Rendering\OpenGL\RenderOpenGL.h" />
+    <ClInclude Include="Rendering\OpenGL\Shader.h" />
+    <ClInclude Include="Rendering\OpenGL\Util\ShaderUtil.h" />
     <ClInclude Include="Rendering\RenderCore\RenderBase.h" />
     <ClInclude Include="Rendering\RenderCore\RenderMain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Rendering\OpenGL\ShaderCode\shader_1.fs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
