@@ -160,6 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core\FileSystem\FileUtil.cpp" />
+    <ClCompile Include="Core\Image\ImageUtil.cpp" />
     <ClCompile Include="Core\Object.cpp" />
     <ClCompile Include="DreamEngine.cpp" />
     <ClCompile Include="Game\GameMain.cpp" />
@@ -173,12 +174,17 @@
   <ItemGroup>
     <Content Include="Rendering\OpenGL\Readme.md" />
     <Content Include="Rendering\OpenGL\ShaderCode\shader_1.vs" />
-    <Content Include="Rendering\Render.md" />
+    <Content Include="Rendering\README.md" />
+    <Content Include="Saved\Image\awesomeface.png" />
+    <Content Include="Saved\Image\wall.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\FileSystem\FileUtil.h" />
+    <ClInclude Include="Core\Image\ImageUtil.h" />
     <ClInclude Include="Core\Object.h" />
     <ClInclude Include="Game\GameMain.h" />
+    <ClInclude Include="Plugin\stb_Image\stb_image.cpp" />
+    <ClInclude Include="Plugin\stb_Image\stb_image.h" />
     <ClInclude Include="Rendering\OpenGL\RenderOpenGL.h" />
     <ClInclude Include="Rendering\OpenGL\Shader.h" />
     <ClInclude Include="Rendering\OpenGL\Util\ShaderUtil.h" />

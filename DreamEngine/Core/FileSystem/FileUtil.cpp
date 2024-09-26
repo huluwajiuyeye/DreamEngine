@@ -46,7 +46,7 @@ std::string FileUtil::ConvertToAbsolutePath(const char* RelativePath)
     std::string current_working_dir(buff);
     current_working_dir.append(RelativePath);
     
-    std::cout<<current_working_dir<<std::endl;
+    std::cout<<"FileUtil::ConvertToAbsolutePath from: "<<RelativePath<<"   to: "<<current_working_dir<<std::endl;
 
     return current_working_dir;
 }
