@@ -267,7 +267,6 @@
     <Content Include="Rendering\README.md" />
     <Content Include="Saved\Image\awesomeface.png" />
     <Content Include="Saved\Image\wall.jpg" />
-    <Content Include="Saved\Software\Software.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Color\SColor.h" />
@@ -296,6 +295,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Rendering\OpenGL\ShaderCode\shader_1.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Saved\Software\" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
